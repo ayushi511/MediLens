@@ -1,3 +1,74 @@
+# Age bracket helper
+def get_age_bracket(age, gender, pregnant=False):
+    if pregnant and gender == "female":
+        return "pregnant"
+    if age < 13:
+        return "child"
+    if age < 18:
+        return "teen"
+    if age >= 60:
+        return "senior"
+    return f"adult_{gender}" if gender in ["male", "female"] else "adult_male"
+
+# Demographic-aware ranges
+DEMOGRAPHIC_RANGES = {
+    "hemoglobin": {
+        "adult_male":   {"min": 13.5, "max": 17.5},
+        "adult_female": {"min": 12.0, "max": 15.5},
+        "child":        {"min": 11.0, "max": 14.0},
+        "teen":         {"min": 12.0, "max": 16.0},
+        "senior":       {"min": 11.5, "max": 16.5},
+        "pregnant":     {"min": 11.0, "max": 14.0},
+    },
+    "rbc": {
+        "adult_male":   {"min": 4.7, "max": 6.1},
+        "adult_female": {"min": 4.2, "max": 5.4},
+        "child":        {"min": 4.0, "max": 5.5},
+        "teen":         {"min": 4.2, "max": 5.8},
+        "senior":       {"min": 4.0, "max": 5.5},
+        "pregnant":     {"min": 3.8, "max": 5.2},
+    },
+    "wbc": {
+        "adult_male":   {"min": 4.5, "max": 11.0},
+        "adult_female": {"min": 4.5, "max": 11.0},
+        "child":        {"min": 5.0, "max": 15.0},
+        "teen":         {"min": 4.5, "max": 13.0},
+        "senior":       {"min": 4.0, "max": 10.5},
+        "pregnant":     {"min": 6.0, "max": 16.0},
+    },
+    "platelets": {
+        "adult_male":   {"min": 150, "max": 400},
+        "adult_female": {"min": 150, "max": 400},
+        "child":        {"min": 150, "max": 450},
+        "teen":         {"min": 150, "max": 400},
+        "senior":       {"min": 150, "max": 380},
+        "pregnant":     {"min": 100, "max": 400},
+    },
+    "glucose": {
+        "adult_male":   {"min": 70, "max": 100},
+        "adult_female": {"min": 70, "max": 100},
+        "child":        {"min": 60, "max": 100},
+        "teen":         {"min": 70, "max": 100},
+        "senior":       {"min": 80, "max": 110},
+        "pregnant":     {"min": 65, "max": 92},
+    },
+    "creatinine": {
+        "adult_male":   {"min": 0.7, "max": 1.3},
+        "adult_female": {"min": 0.5, "max": 1.1},
+        "child":        {"min": 0.3, "max": 0.7},
+        "teen":         {"min": 0.5, "max": 1.0},
+        "senior":       {"min": 0.6, "max": 1.2},
+        "pregnant":     {"min": 0.4, "max": 0.8},
+    },
+    "tsh": {
+        "adult_male":   {"min": 0.4, "max": 4.0},
+        "adult_female": {"min": 0.4, "max": 4.0},
+        "child":        {"min": 0.7, "max": 5.7},
+        "teen":         {"min": 0.5, "max": 4.5},
+        "senior":       {"min": 0.5, "max": 5.0},
+        "pregnant":     {"min": 0.1, "max": 2.5},
+    },
+}
 NORMAL_RANGES = {
 
     "hemoglobin": {
